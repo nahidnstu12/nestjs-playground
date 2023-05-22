@@ -19,6 +19,10 @@ export class User extends Model<User> {
   })
   password: string;
   @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  @Column({
     type: DataType.ENUM,
     values: ['Male', 'Female'],
     allowNull: false,
