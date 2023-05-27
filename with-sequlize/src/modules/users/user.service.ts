@@ -19,4 +19,23 @@ export class UserService {
   async findById(id: number): Promise<User> {
     return await this.userRepository.findOne({ where: { id } });
   }
+
+  async findAll(): Promise<User[]>{
+     return  await this.userRepository.findAll({
+       attributes: {
+         exclude: ['password', 'createdAt']
+       }
+     });
+
+  }
+
+  async deleteOne (id: number) {
+    return await this.userRepository.destroy({ where: { id } })
+  }
+
+  async deleteAll () {
+    return await this.userRepository.destroy({
+      truncate: true
+    })
+  }
 }
