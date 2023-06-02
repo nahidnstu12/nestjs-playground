@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import * as process from 'process';
 import { UserModule } from '../users/user.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -13,8 +12,8 @@ import { LocalStrategy } from './local.strategy';
     PassportModule,
     UserModule,
     JwtModule.register({
-      secret: process.env.JWTKEY,
-      signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
+      secret: "random-1234",
+      signOptions: { expiresIn: '3600s' },
     }),
   ],
   controllers: [AuthController],
