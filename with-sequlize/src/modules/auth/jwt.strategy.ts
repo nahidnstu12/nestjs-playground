@@ -6,10 +6,11 @@ import { UserService } from '../users/user.service';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly userService: UserService) {
+    console.log('process.env.JWTKEY', process.env.JWTKEY);
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWTKEY,
+      secretOrKeyProvider: process.env.JWTKEY,
     });
   }
   async validate(payload: any) {
